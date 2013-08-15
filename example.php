@@ -24,7 +24,7 @@ $b = '1';
 $c = '2';
 $d = '3';
 
-Insphare_ShutdownScheduler::getInstance()->registerClass('TestClass', 'instanceCall', array($a, $b), array($c, $d));
-Insphare_ShutdownScheduler::getInstance()->registerStaticClass('TestClass', 'staticCall', array($a, $b));
-Insphare_ShutdownScheduler::getInstance()->registerWrapper('wrapperCall', array($a, $b));
-Insphare_ShutdownScheduler::getInstance()->registerWrapper('session_write_close');
+ShutdownScheduler::getInstance()->registerClass('TestClass', 'instanceCall', array($a, $b), array($c, $d));
+ShutdownScheduler::getInstance()->registerStaticClass('TestClass', 'staticCall', array($a, $b));
+ShutdownScheduler::getInstance()->registerWrapper('wrapperCall', array($a, $b));
+ShutdownScheduler::getInstance()->registerWrapper('session_write_close');

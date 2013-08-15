@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Insphare_ShutdownScheduler
+ * Class ShutdownScheduler
  * A lot of useful services may be delegated to this useful trigger.
  * It is very effective because it is executed at the end of the script but before any object destruction,
  * so all instantiations are still alive.
@@ -9,17 +9,17 @@
  * either functions or static/dynamic methods, with an indefinite number of arguments availing on a internal handling
  * through call_user_func_array() specific functions.
  */
-class Insphare_ShutdownScheduler {
+class ShutdownScheduler {
 
 	/**
 	 * Array to store user callbacks.
 	 *
-	 * @var Insphare_ShutdownScheduler_Callback[]
+	 * @var ShutdownScheduler_Callback[]
 	 */
 	private $callbacks;
 
 	/**
-	 * @var null | Insphare_ShutdownScheduler
+	 * @var null | ShutdownScheduler
 	 */
 	private static $instance = null;
 
@@ -40,7 +40,7 @@ class Insphare_ShutdownScheduler {
 	/**
 	 * Get a single instance.
 	 *
-	 * @return Insphare_ShutdownScheduler|null
+	 * @return ShutdownScheduler|null
 	 */
 	public static function getInstance() {
 		if (null === self::$instance) {
@@ -54,8 +54,8 @@ class Insphare_ShutdownScheduler {
 	 * Register a class call to handle on shutdown.
 	 */
 	public function registerClass($class, $methodName, array $methodParams = array(), array $constructorParams = array()) {
-		$callback = new Insphare_ShutdownScheduler_Callback();
-		$callback->setType(Insphare_ShutdownScheduler_Callback::TYPE_INSTANCE_CALL);
+		$callback = new ShutdownScheduler_Callback();
+		$callback->setType(ShutdownScheduler_Callback::TYPE_INSTANCE_CALL);
 		$callback->setCallableObject($class);
 		$callback->setMethodName($methodName);
 		$callback->setConstructorArguments($constructorParams);
@@ -67,8 +67,8 @@ class Insphare_ShutdownScheduler {
 	 * Register a static class call to handle on shutdown.
 	 */
 	public function registerStaticClass($className, $methodName, array $methodParams = array()) {
-		$callback = new Insphare_ShutdownScheduler_Callback();
-		$callback->setType(Insphare_ShutdownScheduler_Callback::TYPE_STATIC_CALL);
+		$callback = new ShutdownScheduler_Callback();
+		$callback->setType(ShutdownScheduler_Callback::TYPE_STATIC_CALL);
 		$callback->setMethodName($methodName);
 		$callback->setCallableObject($className);
 		$callback->setMethodArguments($methodParams);
@@ -79,8 +79,8 @@ class Insphare_ShutdownScheduler {
 	 * Register a global function to handle on shutdown.
 	 */
 	public function registerWrapper($methodName, array $methodParams = array()) {
-		$callback = new Insphare_ShutdownScheduler_Callback();
-		$callback->setType(Insphare_ShutdownScheduler_Callback::TYPE_WRAPPER_CALL);
+		$callback = new ShutdownScheduler_Callback();
+		$callback->setType(ShutdownScheduler_Callback::TYPE_WRAPPER_CALL);
 		$callback->setMethodName($methodName);
 		$callback->setMethodArguments($methodParams);
 		$this->addCallback($callback);
@@ -89,7 +89,7 @@ class Insphare_ShutdownScheduler {
 	/**
 	 * Adds a callback unique.
 	 */
-	private function addCallback(Insphare_ShutdownScheduler_Callback $callback) {
+	private function addCallback(ShutdownScheduler_Callback $callback) {
 		$hash = md5(json_encode($callback));
 		$this->callbacks[$hash] = $callback;
 	}

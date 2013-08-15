@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Insphare_ShutdownScheduler_Callback
+ * Class ShutdownScheduler_Callback
  */
-class Insphare_ShutdownScheduler_Callback {
+class ShutdownScheduler_Callback {
 
 	/**
 	 * When is a wrapper.
