@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Class ShutdownScheduler_Callback
+ * Class ShutdownScheduler_Callback.
+ *
+ * The callback object contains how to execute the object.
  */
 class ShutdownScheduler_Callback {
 

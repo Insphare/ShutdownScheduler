@@ -5,6 +5,7 @@ function wrapperCall($a, $b) {
 }
 
 class TestClass {
+
 	public function __construct($c, $d) {
 		$this->c = $c;
 		$this->d = $d;

@@ -2,6 +2,7 @@
 
 /**
  * Class ShutdownScheduler
+ *
  * A lot of useful services may be delegated to this useful trigger.
  * It is very effective because it is executed at the end of the script but before any object destruction,
  * so all instantiations are still alive.
